@@ -1,22 +1,39 @@
 package com.mts.entities;
 import java.time.LocalDate;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 
 @Entity
 public class Admission {
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int admissionId;
 	private int courseId;
 	private int applicantId;
 	private LocalDate admissionDate;
-	public Admission(int admissionId, int courseId, int applicantId, LocalDate admissionDate) {
+	
+	@Enumerated(EnumType.STRING)
+	private AdmissionStatus status;
+	
+	
+	public Admission(int admissionId, int courseId, int applicantId, LocalDate admissionDate, AdmissionStatus status) {
 		super();
 		this.admissionId = admissionId;
 		this.courseId = courseId;
 		this.applicantId = applicantId;
 		this.admissionDate = admissionDate;
-		}
+		this.status = status;
+	}
+	
 	public int getAdmissionId() {
 		return admissionId;
 	}
@@ -41,10 +58,16 @@ public class Admission {
 	public void setAdmissionDate(LocalDate admissionDate) {
 		this.admissionDate = admissionDate;
 	}
+	public AdmissionStatus getStatus() {
+		return status;
+	}
+	public void setStatus(AdmissionStatus status) {
+		this.status = status;
+	}
 	@Override
 	public String toString() {
 		return "Admission [admissionId=" + admissionId + ", courseId=" + courseId + ", applicantId=" + applicantId
-				+ ", admissionDate=" + admissionDate + "]";
+				+ ", admissionDate=" + admissionDate + ", status=" + status + "]";
 	}
 	
 }

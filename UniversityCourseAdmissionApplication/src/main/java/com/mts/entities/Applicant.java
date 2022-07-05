@@ -2,13 +2,15 @@ package com.mts.entities;
 
 import java.util.List;
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.OneToOne;
 @Entity
 public class Applicant {
 	@Id
@@ -18,8 +20,12 @@ public class Applicant {
 	private String mobileNumber;
 	private String applicantDegree;
 	private int applicantGraduationPercent;
+	@OneToOne(cascade=CascadeType.ALL)
 	private Admission admission;
+	
+	@Enumerated(EnumType.STRING)
 	private AdmissionStatus status;
+	
 	public Applicant(String applicantId, String applicantName, String mobileNumber, String applicantDegree,
 			int applicantGraduationPercent, Admission admission, AdmissionStatus status) {
 		super();
@@ -31,6 +37,8 @@ public class Applicant {
 		this.admission = admission;
 		this.status = status;
 	}
+
+	
 	public String getApplicantId() {
 		return applicantId;
 	}
@@ -79,7 +87,5 @@ public class Applicant {
 				+ mobileNumber + ", applicantDegree=" + applicantDegree + ", applicantGraduationPercent="
 				+ applicantGraduationPercent + ", admission=" + admission + ", status=" + status + "]";
 	}
-	
-	
-	
+
 }

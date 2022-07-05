@@ -2,12 +2,11 @@ package com.mts.repository;
 
 import java.util.List;
 
-import com.mts.entities.AdmissionCommiteeMember;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import com.mts.entities.Admission;
+import com.mts.entities.AdmissionCommiteeMember;
+@Repository
 public interface IAdmissionCommiteeMemberRepository {
-	public  AdmissionCommiteeMember addCommiteeMember(AdmissionCommiteeMember member);
-	public AdmissionCommiteeMember updateCommiteeMember(AdmissionCommiteeMember member);
-	public AdmissionCommiteeMember viewCommiteeMember(int adminId);
-	public void removeCommiteeMember(int adminId);
-	public List<AdmissionCommiteeMember> viewAllCommiteeMembers();
-}
+	}
