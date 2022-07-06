@@ -35,7 +35,11 @@ public Admission updateAdmission(@PathVariable int id,@RequestBody Admission e)
 {
 	return service.updateAdmission(id,e);
 }
-
+@RequestMapping(value="/delete/{id}",method=RequestMethod.DELETE)
+public String deleteAdmission(@PathVariable int id) 
+{
+	return service.deleteAdmission(id);
+}
 
 }
  

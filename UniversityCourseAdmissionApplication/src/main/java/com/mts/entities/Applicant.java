@@ -16,6 +16,7 @@ public class Applicant {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private String applicantId;
+
 	private String applicantName;
 	private String mobileNumber;
 	private String applicantDegree;
