@@ -2,7 +2,6 @@ package com.mts.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.mts.entities.Admission;
 import com.mts.entities.AdmissionStatus;
 import com.mts.entities.Applicant;
@@ -23,7 +21,7 @@ import com.mts.exception.ApplicantNotFoundException;
 import com.mts.service.IApplicantService;
 
 @RestController
-@RequestMapping("applicant")
+@RequestMapping("/applicant")
 public class ApplicantController {
 	@Autowired
 	IApplicantService service;
