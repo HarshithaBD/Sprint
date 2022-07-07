@@ -2,6 +2,7 @@ package com.mts.service;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import org.springframework.http.ResponseEntity;
 
 import com.mts.DTO.ApplicantDTO;
@@ -25,3 +26,16 @@ public interface IApplicantService {
 }
 
 
+=======
+import com.mts.entity.AdmissionStatus;
+import com.mts.entity.Applicant;
+import com.mts.exception.ApplicantNotFoundException;
+
+public interface IApplicantService {
+	public Applicant addApplicant(Applicant applicant);
+	public Applicant updateApplicant(Applicant applicant) throws ApplicantNotFoundException;
+	public Applicant deleteApplicant(Applicant applicant) throws ApplicantNotFoundException;
+	public Applicant viewApplicant(int applicant) throws ApplicantNotFoundException;
+	public List<Applicant> viewAllApplicantsByStatus(AdmissionStatus status);
+}
+>>>>>>> branch 'master' of https://github.com/Karan-5157/UniversityCourseAdmissionApplication.git

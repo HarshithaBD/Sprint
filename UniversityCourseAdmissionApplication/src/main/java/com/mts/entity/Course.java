@@ -1,24 +1,14 @@
-package com.mts.entities;
+package com.mts.entity;
 
 import java.time.LocalDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-@Entity
-@Table(name="course")
 public class Course {
-	@Id
 	private int courseId;
 	private String courseName;
 	private String courseDuration;
 	private LocalDate courseStartDate;
 	private LocalDate courseEndDate;
 	private String courseFees;
-	
-	
 	
 	public Course() {
 		super();
@@ -76,5 +66,4 @@ public class Course {
 				+ courseFees + "]";
 	}
 	
-
 }
