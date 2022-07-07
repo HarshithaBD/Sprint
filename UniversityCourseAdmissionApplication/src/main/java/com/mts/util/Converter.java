@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import com.mts.DTO.ApplicantDTO;
-import com.mts.entities.Applicant;
+import com.mts.entity.Applicant;
 
 public class Converter {
 	public static ApplicantDTO convertApplicantToDTO(Applicant applicant) 
@@ -26,14 +26,14 @@ public class Converter {
 		return list;
 	}
 
-	public static Applicant convertApplicantToEntity(Applicant applicant) 
+	public static Applicant convertApplicantToEntity(Applicant applicantDto) 
 	{
 		Applicant applicant1=new Applicant();
 		BeanUtils.copyProperties(applicant1, applicant1);
 		return applicant1;
 	}
 
-	public static List<Applicant> convertApplicantToEntity(List<Applicant> listDto)
+	public static List<Applicant> convertApplicantDtoToEntity(List<Applicant> listDto)
 	{
 		List<Applicant> list =new ArrayList<>();
 		for(Applicant applicant:listDto)

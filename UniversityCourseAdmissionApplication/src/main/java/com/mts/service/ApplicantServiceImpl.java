@@ -20,15 +20,23 @@ public class ApplicantServiceImpl  implements IApplicantService{
 	IApplicantRepository repo;
 	
 	@Override
-	public ApplicantDTO addApplicant(ApplicantDTO applicant)
+	public ApplicantDTO addApplicant(ApplicantDTO applicantDto)
 	{
-		return repo.save(Converter.convertApplicantToDTO(applicant));
+		int applicantId=applicantDto.getApplicantId();
 		
+		ApplicantDTO applicant=Converter.converterApplicantToDTO(repo.findById(applicantId).orElseThrow()));
+		
+		applicant repo.save(Converter.converterApplicantDtoToEntity(applicantDto));
+		return applicantDto;
 	}
 	@Override
 	public ApplicantDTO updateApplicant(ApplicantDTO applicant)throws ApplicantNotFoundException
 	{
-	ApplicantDTO applicant1=repo.findById(applicant.getApplicantId()).orElseThrow(()->new ApplicantNotFoundException("no applicant found with this id!"));
+		
+		Applicant app=Converter.converterApplicantDtoToEntity(applicantDto);
+		int id=applicant.getApplicantId();
+		
+	Applicant applicant1=repo.findById(applicant.getApplicantId()).orElseThrow(()->new ApplicantNotFoundException("no applicant found with this id!"));
 	applicant1.setApplicantName(applicant.getApplicantName());
 	applicant1.setMobileNumber(applicant.getMobileNumber());
 	applicant1.setApplicantDegree(applicant.getApplicantDegree());
@@ -51,6 +59,6 @@ return repo.findByStatus(status);
 @Override
 public ApplicantDTO viewApplicant(int applicantId) throws ApplicantNotFoundException {
 	
-	return repo.findById(applicantId).orElseThrow(()->new ApplicantNotFoundException("no applicant found with this id!"));
+	Conveter.conveterrApplicantToDTO(repo.findById(applicantId).orElseThrow(())->new ApplicantNotFoundException("no applicant found with this id!"));
 }
 }

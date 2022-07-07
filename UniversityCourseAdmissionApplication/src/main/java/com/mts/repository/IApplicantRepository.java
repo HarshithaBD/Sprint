@@ -11,12 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import com.mts.entity.AdmissionStatus;
 import com.mts.entity.Applicant;
-
-
-
-
-
-
 @Repository
 public interface IApplicantRepository extends JpaRepository<Applicant,Integer>{
 	 List<Applicant>findByStatus(AdmissionStatus status);
