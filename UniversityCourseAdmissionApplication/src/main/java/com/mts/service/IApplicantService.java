@@ -9,12 +9,18 @@ import com.mts.entities.Applicant;
 import com.mts.exception.ApplicantNotFoundException;
 
 public interface IApplicantService {
-Applicant addApplicant(Applicant a);
-Applicant updateApplicant(int id,Applicant ap);
- void deleteApplicant(int id);
-ResponseEntity<Applicant> viewApplicant(int id)throws ApplicantNotFoundException;
-List<Applicant> viewAllApplicant();
-public List<Applicant> viewApplicantsByStatus(AdmissionStatus  status);
+ 
+	public Applicant addApplicant(Applicant applicant);
+	
+	public Applicant  updateApplicant(Applicant applicant)throws ApplicantNotFoundException;
+	
+	public  Applicant deleteApplicant(Applicant applicant)throws ApplicantNotFoundException;
+	
+	public Applicant viewApplicant(int applicantId)throws ApplicantNotFoundException;
+	
+	public List<Applicant> viewAllApplicantByStatus(AdmissionStatus status);
+	
+	
 }
 
 

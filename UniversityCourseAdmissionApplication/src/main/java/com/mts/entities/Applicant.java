@@ -10,24 +10,29 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 @Entity
 public class Applicant {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String applicantId;
-
-	private String applicantName;
+	
+	private int applicantId;
+    private String applicantName;
 	private String mobileNumber;
 	private String applicantDegree;
 	private int applicantGraduationPercent;
 	@OneToOne(cascade=CascadeType.ALL)
 	private Admission admission;
-	
-	@Enumerated(EnumType.STRING)
+		@Enumerated(EnumType.STRING)
 	private AdmissionStatus status;
 	
-	public Applicant(String applicantId, String applicantName, String mobileNumber, String applicantDegree,
+	  public Applicant() {
+		super();
+	}
+
+
+	public Applicant(int applicantId, String applicantName, String mobileNumber, String applicantDegree,
 			int applicantGraduationPercent, Admission admission, AdmissionStatus status) {
 		super();
 		this.applicantId = applicantId;
@@ -40,10 +45,10 @@ public class Applicant {
 	}
 
 	
-	public String getApplicantId() {
+	public int getApplicantId() {
 		return applicantId;
 	}
-	public void setApplicantId(String applicantId) {
+	public void setApplicantId(int applicantId) {
 		this.applicantId = applicantId;
 	}
 	public String getApplicantName() {
@@ -82,11 +87,13 @@ public class Applicant {
 	public void setStatus(AdmissionStatus status) {
 		this.status = status;
 	}
+
+
 	@Override
 	public String toString() {
 		return "Applicant [applicantId=" + applicantId + ", applicantName=" + applicantName + ", mobileNumber="
 				+ mobileNumber + ", applicantDegree=" + applicantDegree + ", applicantGraduationPercent="
 				+ applicantGraduationPercent + ", admission=" + admission + ", status=" + status + "]";
 	}
-
+	
 }

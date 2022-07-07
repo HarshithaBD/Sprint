@@ -2,6 +2,7 @@ package com.mts.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,43 +19,36 @@ import com.mts.entities.Admission;
 import com.mts.entities.AdmissionStatus;
 import com.mts.entities.Applicant;
 import com.mts.exception.ApplicantNotFoundException;
-import com.mts.service.ApplicantService;
+
+import com.mts.service.IApplicantService;
 
 @RestController
+@RequestMapping("applicant")
 public class ApplicantController {
 	@Autowired
-	ApplicantService service;
+	IApplicantService service;
 	
-	@PostMapping(value="/applicant/add")
-	public Applicant addApplicant(@RequestBody Applicant a)
-
+	@PostMapping("/addApplicant")
+	public Applicant addApplicant(@RequestBody Applicant applicant)
 	{
-		return service.addApplicant(a);
+		return service.addApplicant(applicant);
 	}
-	@GetMapping("/applicant/all")
-	public List<Applicant> viewAllApplicant(){
-
-		return service.viewAllApplicant();
-		}
-	@GetMapping("/applicant/id/{id}")
-	public ResponseEntity<Applicant>  viewApplicant(@PathVariable int id)throws ApplicantNotFoundException 
-	{
-		return service.viewApplicant(id);
+	@PutMapping("/updateApplicant")
+	public Applicant updateApplicant(@RequestBody Applicant applicant)throws ApplicantNotFoundException{
+		return service.updateApplicant(applicant);
+		
 	}
-	@GetMapping("/applicant/status/{status}")
-	public List<Applicant> viewAllApplicantByStatus(@PathVariable("status")AdmissionStatus status) 
+	@DeleteMapping("/deleteApplicant")
+	public Applicant deleteApplicant(@RequestBody Applicant applicant)throws ApplicantNotFoundException
 	{
-		return service.viewApplicantsByStatus(status);
+		return service.deleteApplicant(applicant);
 	}
-	@PutMapping("/applicant/update/{id}")
-	public Applicant updateApplicant(@PathVariable int id,@RequestBody Applicant ap) 
-	{
-		return service.updateApplicant(id,ap);
+	@GetMapping("/viewApplicant/{applicantId}")
+	public Applicant viewApplicant(@PathVariable int applicantId)throws ApplicantNotFoundException {
+		return service.viewApplicant(applicantId);
 	}
-	@DeleteMapping("/applicant/delete/{id}")
-	public void deleteApplicant(@PathVariable int id)
-	{
-		service.deleteApplicant(id);
-
+	@GetMapping("/viewAllApplicantByStatus/{status}")
+	public List<Applicant> viewApplicantByStatus(@PathVariable AdmissionStatus status){
+		return service.viewAllApplicantByStatus(status);
 	}
 }
