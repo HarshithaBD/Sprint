@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.mts.entity.AdmissionCommiteeMember;
 
 @Repository
-public interface IAdmissionCommiteeMemberRepository extends JpaRepository<AdmissionCommiteeMember,Integer> {
+public interface IAdmissionCommiteeRepository extends JpaRepository<AdmissionCommiteeMember,Integer> {
 	
 }

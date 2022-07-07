@@ -18,8 +18,7 @@ import com.mts.service.ICourseService;
 
 @RestController
 @RequestMapping("/course")
-public class CourseContoller 
-{
+public class CourseController {
 
 	@Autowired
 	ICourseService service;

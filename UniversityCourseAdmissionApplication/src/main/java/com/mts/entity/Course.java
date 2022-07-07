@@ -4,20 +4,23 @@ import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Course {
-
-	@Id
 	
+	@Id
 	private int courseId;
+	@NotNull
 	private String courseName;
 	private String courseDuration;
 	private LocalDate courseStartDate;
 	private LocalDate courseEndDate;
 	private String courseFees;
-
 	
+	public Course() {
+		super();
+	}
 
 	public Course(int courseId, String courseName, String courseDuration, LocalDate courseStartDate,
 			LocalDate courseEndDate, String courseFees) {
@@ -29,13 +32,6 @@ public class Course {
 		this.courseEndDate = courseEndDate;
 		this.courseFees = courseFees;
 	}
-	
-
-	public Course() {
-		super();
-		
-	}
-
 
 	public int getCourseId() {
 		return courseId;
@@ -91,5 +87,5 @@ public class Course {
 				+ ", courseStartDate=" + courseStartDate + ", courseEndDate=" + courseEndDate + ", courseFees="
 				+ courseFees + "]";
 	}
-
+	
 }

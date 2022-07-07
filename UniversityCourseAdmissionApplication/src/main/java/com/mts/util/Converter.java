@@ -18,7 +18,7 @@ public class Converter {
 
 	public static List<ApplicantDTO> convertApplicantToDTO(List<Applicant> listDto)
 	{
-		List<ApplicantDTO> list =new ArrayList<>();
+		List<ApplicantDto> list =new ArrayList<>();
 		for(Applicant applicant:listDto)
 		{
 			list.add(convertApplicantToDTO(applicant));

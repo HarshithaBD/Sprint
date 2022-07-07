@@ -10,11 +10,11 @@ public interface IAdmissionService {
 
 	public Admission addAdmission(Admission admission);
 
-	 public Admission updateAdmission(Admission admission)throws AdmissionNotGrantedException;
+	public Admission updateAdmission(Admission admission) throws AdmissionNotGrantedException;
 
-public 	Admission removeAdmission(int admissionId)throws AdmissionNotGrantedException;
+	public Admission cancelAdmission(int admissionId) throws AdmissionNotGrantedException;
 
-public List<Admission> showAllAdmissionByCourseId(int courseId);
+	public List<Admission> showAllAdmissionsByCourseId(int courseId);
 
-public List<Admission> showAllAdmissionByDate(LocalDate admissiondate);
+	public List<Admission> showAllAdmissionsByDate(LocalDate admissionDate);
 }

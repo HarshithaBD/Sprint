@@ -21,36 +21,32 @@ import com.mts.service.IAdmissionService;
 @RestController
 @RequestMapping("/admission")
 public class AdmissionController {
-	
+
 	@Autowired
 	IAdmissionService service;
 	
 	@PostMapping("/addAdmission")
-	public Admission addAdmission(@RequestBody Admission admission)
-	{
+	public Admission addAdmission(@RequestBody Admission admission) {
 		return service.addAdmission(admission);
-		
 	}
+	
 	@PutMapping("/updateAdmission")
-	public Admission updateAdmission(@RequestBody Admission admission)throws AdmissionNotGrantedException{
-	return service.updateAdmission(admission);
-	
-}
-	@DeleteMapping("/removeAdmission/{admissionId}")
-	public Admission removeAdmission(@PathVariable int admissionId)throws AdmissionNotGrantedException{
-		return service.removeAdmission(admissionId);
+	public Admission updateAdmission(@RequestBody Admission admission) throws AdmissionNotGrantedException {
+		return service.updateAdmission(admission);
 	}
-	@GetMapping("/showAllAdmissionByCourseId/{courseId}")
-	public List<Admission>showAdmissionsByCourseId(@PathVariable int courseId)
-	{
-	return service.showAllAdmissionByCourseId(courseId);
-}
-	@GetMapping("/showAllAdmissionByDate/{admissionDate}")
-	public List<Admission> showAllAdmissionsByDate(@PathVariable LocalDate admissionDate)
-	{
-		return service.showAllAdmissionByDate(admissionDate);
+	
+	@DeleteMapping("/cancelAdmission/{admissionId}")
+	public Admission cancelAdmission(@PathVariable int admissionId) throws AdmissionNotGrantedException {
+		return service.cancelAdmission(admissionId);
+	}
+	
+	@GetMapping("/showAllAdmissionsByCourseId/{courseId}")
+	public List<Admission> showAllAdmissionsByCourseId(@PathVariable int courseId){
+		return service.showAllAdmissionsByCourseId(courseId);
+	}
+	
+	@GetMapping("/showAllAdmissionsByDate/{admissionDate}")
+	public List<Admission> showAllAdmissionsByDate(@PathVariable LocalDate admissionDate) {
+		return service.showAllAdmissionsByDate(admissionDate);
 	}
 }
-
-
-	

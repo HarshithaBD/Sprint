@@ -1,64 +1,64 @@
 package com.mts.service;
 
+import java.util.Arrays;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mts.DTO.ApplicantDTO;
-import com.mts.entities.AdmissionStatus;
-import com.mts.entities.Applicant;
+import com.mts.DTO.ApplicantDto;
+import com.mts.entity.AdmissionStatus;
+import com.mts.entity.Applicant;
 import com.mts.exception.ApplicantNotFoundException;
 import com.mts.repository.IApplicantRepository;
 
-import ch.qos.logback.core.pattern.Converter;
-
 @Service
-public class ApplicantServiceImpl  implements IApplicantService{
-	
+public class ApplicantServiceImpl implements IApplicantService{
+
 	@Autowired
 	IApplicantRepository repo;
 	
-	@Override
-	public ApplicantDTO addApplicant(ApplicantDTO applicantDto)
-	{
-		int applicantId=applicantDto.getApplicantId();
-		
-		ApplicantDTO applicant=Converter.converterApplicantToDTO(repo.findById(applicantId).orElseThrow()));
-		
-		applicant repo.save(Converter.converterApplicantDtoToEntity(applicantDto));
-		return applicantDto;
-	}
-	@Override
-	public ApplicantDTO updateApplicant(ApplicantDTO applicant)throws ApplicantNotFoundException
-	{
-		
-		Applicant app=Converter.converterApplicantDtoToEntity(applicantDto);
-		int id=applicant.getApplicantId();
-		
-	Applicant applicant1=repo.findById(applicant.getApplicantId()).orElseThrow(()->new ApplicantNotFoundException("no applicant found with this id!"));
-	applicant1.setApplicantName(applicant.getApplicantName());
-	applicant1.setMobileNumber(applicant.getMobileNumber());
-	applicant1.setApplicantDegree(applicant.getApplicantDegree());
-	applicant1.setApplicantGraduationPercent(applicant.getApplicantGraduationPercent());
-	applicant1.setAdmission(applicant.getAdmission());
-	applicant1.setStatus(applicant.getStatus());
-	return repo.save(applicant1);
-	}
-@Override
-public ApplicantDTO deleteApplicant(ApplicantDTO applicant)throws ApplicantNotFoundException
-{
-	Applicant applicant1=repo.findById(applicant.getApplicantId()).orElseThrow(()-> new ApplicantNotFoundException("no applicant found with this id!"));
-	repo.delete(applicant1);
-	return applicant1;
-}
-@Override
-public List<Applicant> viewAllApplicantByStatus(AdmissionStatus status){
-return repo.findByStatus(status);
-}
-@Override
-public ApplicantDTO viewApplicant(int applicantId) throws ApplicantNotFoundException {
+	@Autowired
+	ModelMapper mapper;
 	
-	Conveter.conveterrApplicantToDTO(repo.findById(applicantId).orElseThrow(())->new ApplicantNotFoundException("no applicant found with this id!"));
-}
+	@Override
+	public Applicant addApplicant(Applicant applicant) {
+		return repo.save(applicant);
+	}
+
+	@Override
+	public Applicant updateApplicant(Applicant applicant) throws ApplicantNotFoundException {
+		Applicant applicant1=repo.findById(applicant.getApplicantId()).orElseThrow(()-> new ApplicantNotFoundException("No applicant found with this id !"));
+		
+		applicant1.setApplicantName(applicant.getApplicantName());
+		applicant1.setMobileNumber(applicant.getMobileNumber());
+		applicant1.setApplicantDegree(applicant.getApplicantDegree());
+		applicant1.setApplicantGraduationPercent(applicant.getApplicantGraduationPercent());
+		applicant1.setAdmission(applicant.getAdmission());
+		applicant1.setStatus(applicant.getStatus());
+		applicant1.setPassword(applicant.getPassword());
+		return repo.save(applicant1);
+	}
+
+	@Override
+	public Applicant deleteApplicant(Applicant applicant) throws ApplicantNotFoundException {
+		Applicant applicant1=repo.findById(applicant.getApplicantId()).orElseThrow(()-> new ApplicantNotFoundException("No applicant found with this id !"));
+		repo.delete(applicant1);
+		return applicant1;
+	}
+
+	@Override
+	public ApplicantDto viewApplicant(int applicantId) throws ApplicantNotFoundException {
+		Applicant applicant1=repo.findById(applicantId).orElseThrow(()-> new ApplicantNotFoundException("No applicant found with this id !"));
+		return mapper.map(applicant1, ApplicantDto.class);
+	}
+
+	@Override
+	public List<ApplicantDto> viewAllApplicantsByStatus(AdmissionStatus status) {
+		List<Applicant> lst=repo.findByStatus(status);
+		List<ApplicantDto> toDTO=Arrays.asList(mapper.map(lst, ApplicantDto[].class));
+		return toDTO;
+	}
+
 }

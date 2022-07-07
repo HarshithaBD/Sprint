@@ -8,20 +8,24 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Admission {
-
 	@Id
 	@GeneratedValue
 	private int admissionId;
+	@NotNull
 	private int courseId;
+	@NotNull
 	private int applicantId;
 	private LocalDate admissionDate;
-	
 	@Enumerated(EnumType.STRING)
 	private AdmissionStatus status;
 
+	public Admission() {
+		super();
+	}
 
 	public Admission(int admissionId, int courseId, int applicantId, LocalDate admissionDate, AdmissionStatus status) {
 		super();

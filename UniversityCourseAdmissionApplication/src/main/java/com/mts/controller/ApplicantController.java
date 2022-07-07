@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mts.DTO.ApplicantDto;
+import com.mts.entity.AdmissionStatus;
 import com.mts.entity.Applicant;
 import com.mts.exception.ApplicantNotFoundException;
 
@@ -22,30 +24,32 @@ import com.mts.service.IApplicantService;
 @RestController
 @RequestMapping("/applicant")
 public class ApplicantController {
+
 	@Autowired
 	IApplicantService service;
 	
 	@PostMapping("/addApplicant")
-	public Applicant addApplicant(@RequestBody Applicant applicant)
-	{
+	public Applicant addApplicant(@RequestBody Applicant applicant) {
 		return service.addApplicant(applicant);
 	}
+	
 	@PutMapping("/updateApplicant")
-	public Applicant updateApplicant(@RequestBody Applicant applicant)throws ApplicantNotFoundException{
+	public Applicant updateApplicant(@RequestBody Applicant applicant) throws ApplicantNotFoundException {
 		return service.updateApplicant(applicant);
-		
 	}
+	
 	@DeleteMapping("/deleteApplicant")
-	public Applicant deleteApplicant(@RequestBody Applicant applicant)throws ApplicantNotFoundException
-	{
+	public Applicant deleteApplicant(@RequestBody Applicant applicant) throws ApplicantNotFoundException {
 		return service.deleteApplicant(applicant);
 	}
+	
 	@GetMapping("/viewApplicant/{applicantId}")
-	public Applicant viewApplicant(@PathVariable int applicantId)throws ApplicantNotFoundException {
+	public ApplicantDto viewApplicant(@PathVariable int applicantId) throws ApplicantNotFoundException {
 		return service.viewApplicant(applicantId);
 	}
-	@GetMapping("/viewAllApplicantByStatus/{status}")
-	public List<Applicant> viewApplicantByStatus(@PathVariable AdmissionStatus status){
-		return service.viewAllApplicantByStatus(status);
+	
+	@GetMapping("/viewAllApplicantsByStatus/{status}")
+	public List<ApplicantDto> viewAllApplicantsByStatus(@PathVariable AdmissionStatus status){
+		return service.viewAllApplicantsByStatus(status);
 	}
 }

@@ -8,28 +8,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Applicant {
-
 	@Id
-	@GeneratedValue
-	private String applicantId;
+	private int applicantId;
+	@NotNull
 	private String applicantName;
 	private String mobileNumber;
 	private String applicantDegree;
 	private int applicantGraduationPercent;
-	
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="admissionId")
+	@JoinColumn(referencedColumnName = "admissionId", name="admissionId")
 	private Admission admission;
 	@Enumerated(EnumType.STRING)
 	private AdmissionStatus status;
-
+	private String password;
 	
+	public Applicant() {
+		super();
+	}
 
-	public Applicant(String applicantId, String applicantName, String mobileNumber, String applicantDegree,
-			int applicantGraduationPercent, Admission admission, AdmissionStatus status) {
+	public Applicant(int applicantId, String applicantName, String mobileNumber, String applicantDegree,
+			int applicantGraduationPercent, Admission admission, AdmissionStatus status, String password) {
 		super();
 		this.applicantId = applicantId;
 		this.applicantName = applicantName;
@@ -38,13 +40,14 @@ public class Applicant {
 		this.applicantGraduationPercent = applicantGraduationPercent;
 		this.admission = admission;
 		this.status = status;
+		this.password = password;
 	}
 
-	public String getApplicantId() {
+	public int getApplicantId() {
 		return applicantId;
 	}
 
-	public void setApplicantId(String applicantId) {
+	public void setApplicantId(int applicantId) {
 		this.applicantId = applicantId;
 	}
 
@@ -96,11 +99,20 @@ public class Applicant {
 		this.status = status;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
 		return "Applicant [applicantId=" + applicantId + ", applicantName=" + applicantName + ", mobileNumber="
 				+ mobileNumber + ", applicantDegree=" + applicantDegree + ", applicantGraduationPercent="
-				+ applicantGraduationPercent + ", admission=" + admission + ", status=" + status + "]";
+				+ applicantGraduationPercent + ", admission=" + admission + ", status=" + status + ", password="
+				+ password + "]";
 	}
-
+	
 }
