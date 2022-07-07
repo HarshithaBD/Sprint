@@ -1,4 +1,4 @@
-package com.mts.contoller;
+package com.mts.controller;
 
 import java.util.List;
 
