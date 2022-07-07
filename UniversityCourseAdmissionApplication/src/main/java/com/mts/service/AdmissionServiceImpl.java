@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mts.entities.Admission;
+import com.mts.entity.Admission;
 import com.mts.exception.AdmissionNotGrantedException;
 import com.mts.repository.IAdmissionRepository;
 @Service

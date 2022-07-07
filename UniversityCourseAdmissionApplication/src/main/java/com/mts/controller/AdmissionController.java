@@ -1,6 +1,7 @@
 package com.mts.controller;
 
 import java.time.LocalDate;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mts.entities.Admission;
+import com.mts.entity.Admission;
 import com.mts.exception.AdmissionNotGrantedException;
 import com.mts.service.IAdmissionService;
 

@@ -7,8 +7,10 @@ import javax.persistence.OneToOne;
 
 import org.springframework.stereotype.Component;
 
-import com.mts.entities.Admission;
-import com.mts.entities.AdmissionStatus;
+import com.mts.entity.Admission;
+import com.mts.entity.AdmissionStatus;
+
+
 
 @Component
 public class ApplicantDTO {

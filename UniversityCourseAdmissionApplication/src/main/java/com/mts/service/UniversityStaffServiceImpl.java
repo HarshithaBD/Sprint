@@ -2,6 +2,7 @@ package com.mts.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +20,9 @@ public class UniversityStaffServiceImpl implements IUniversityStaffService{
 	IUniversityStaffRepository repo;
 	
 	@Autowired
-	ICourseRepository courseRepository;
+	ICourseRepository courseRepository;	
 	
-	@Override
+	
 	public UniversityStaffMember addStaff(UniversityStaffMember user) {
 		return repo.save(user);
 	}
@@ -65,7 +66,7 @@ public class UniversityStaffServiceImpl implements IUniversityStaffService{
 
 	@Override
 	public Course updateCourse(Course course) throws CourseNotFoundException {
-		Course existingCourse = courseRepository.findById(course.getCourseId()).orElseThrow(()->new CourseNotFoundException("Cann't update. No Course with this Id found!"));
+		Course existingCourse =courseRepository.findById(course.getCourseId()).orElseThrow(()->new CourseNotFoundException("Cann't update. No Course with this Id found!"));
 
 		existingCourse.setCourseName(course.getCourseName());
 		existingCourse.setCourseDuration(course.getCourseDuration());
