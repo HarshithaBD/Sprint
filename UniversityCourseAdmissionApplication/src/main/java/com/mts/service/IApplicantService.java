@@ -4,21 +4,22 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import com.mts.DTO.ApplicantDTO;
 import com.mts.entities.AdmissionStatus;
 import com.mts.entities.Applicant;
 import com.mts.exception.ApplicantNotFoundException;
 
 public interface IApplicantService {
  
-	public Applicant addApplicant(Applicant applicant);
+	public ApplicantDTO addApplicant(ApplicantDTO applicant);
 	
-	public Applicant  updateApplicant(Applicant applicant)throws ApplicantNotFoundException;
+	public ApplicantDTO  updateApplicant(ApplicantDTO applicant)throws ApplicantNotFoundException;
 	
-	public  Applicant deleteApplicant(Applicant applicant)throws ApplicantNotFoundException;
+	public  ApplicantDTO deleteApplicant(ApplicantDTO applicant)throws ApplicantNotFoundException;
 	
-	public Applicant viewApplicant(int applicantId)throws ApplicantNotFoundException;
+	public ApplicantDTO viewApplicant(int applicantId)throws ApplicantNotFoundException;
 	
-	public List<Applicant> viewAllApplicantByStatus(AdmissionStatus status);
+	public List<ApplicantDTO> viewAllApplicantByStatus(AdmissionStatus status);
 	
 	
 }

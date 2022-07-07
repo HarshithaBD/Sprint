@@ -15,7 +15,13 @@ public class UniversityStaffMember {
 	private int staffId;
 	private String password;
 	private String role;
+	
+	
+	public UniversityStaffMember() {
+		super();
+	}
 	public UniversityStaffMember(int staffId, String password, String role) {
+		super();
 	      this.staffId = staffId;
 		this.password = password;
 		this.role = role;
