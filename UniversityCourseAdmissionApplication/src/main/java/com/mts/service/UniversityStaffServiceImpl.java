@@ -4,19 +4,25 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.mts.entity.Course;
 import com.mts.entity.UniversityStaffMember;
 import com.mts.exception.CourseNotFoundException;
+import com.mts.exception.UniversityStaffException;
+import com.mts.repository.ICourseRepository;
 import com.mts.repository.IUniversityStaffRepository;
 
 @Service
 public class UniversityStaffServiceImpl implements IUniversityStaffService {
 	
 	@Autowired
-	private IUniversityStaffRepository staffRepository;
+    IUniversityStaffRepository staffRepository;
 
+	/*
+	 * @Autowired ICourseRepository courseRepository;
+	 */
 
 	@Override
 	public UniversityStaffMember addStaff(UniversityStaffMember user) {
@@ -25,55 +31,52 @@ public class UniversityStaffServiceImpl implements IUniversityStaffService {
 
 
 	@Override
-	public UniversityStaffMember updateStaff(UniversityStaffMember user) {
-		// TODO Auto-generated method stub
-		return null;
+	public UniversityStaffMember updateStaff(UniversityStaffMember user) throws UniversityStaffException {
+		UniversityStaffMember member=staffRepository.findById(user.getStaffId()).orElseThrow(()-> new UniversityStaffException ("cannot update as Id not found"));
+			member.setPassword(user.getPassword());
+			member.setRole(user.getRole());
+			return member;
+		}
+
+	@Override
+	public UniversityStaffMember viewStaff(int staffid) throws UniversityStaffException {
+		return staffRepository.findById(staffid).orElseThrow(()-> new UniversityStaffException ("there is no staff with this id"));
 	}
 
 
 	@Override
-	public List<UniversityStaffMember> viewStaff() {    
-		return  staffRepository.findAll();
+	public void removeStaff(int staffid) throws UniversityStaffException {
+		 staffRepository.deleteById(staffid);
 	}
-
-
-	@Override
-	public void removeStaff(int staffid) {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 	@Override
 	public List<UniversityStaffMember> viewAllStaffs() {
-		// TODO Auto-generated method stub
-		return null;
+		return staffRepository.findAll();
 	}
 
+	/*
+	 * @Override public Course addCourse(Course course) { return
+	 * courseRepository.save(course); }
+	 */
 
-	@Override
-	public Course addCourse(Course course) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	/*
+	 * @Override public Course removeCourse(int courseId) throws
+	 * CourseNotFoundException { Course
+	 * course=courseRepository.findById(courseId).orElseThrow(()-> new
+	 * CourseNotFoundException("No record present with given id"));
+	 * courseRepository.delete(course); return course; }
+	 */
 
-
-	@Override
-	public Course removeCourse(int courseId) throws CourseNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public Course updateCourse(Course course) throws CourseNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	 
-	
-	  
-	 
+	/*
+	 * @Override public Course updateCourse(Course course) throws
+	 * CourseNotFoundException { Course
+	 * existingCourse=courseRepository.findById(course.getCourseId()).orElseThrow(()
+	 * -> new CorseNotFoundException("cannot update"));
+	 * existingCourse.setCourseName(course.getCourseName());
+	 * existingCourse.setCourseDuration(course.getCourseDuration());
+	 * existingCourse.setCourseStartDate(course.getCourseStartDate());
+	 * existingCourse.setCourseEndDate(course.getCourseEndDate());
+	 * existingCourse.setCourseFees(course.getCourseFees()); return
+	 * courseRepository.save(existingCourse); }
+	 */
 }

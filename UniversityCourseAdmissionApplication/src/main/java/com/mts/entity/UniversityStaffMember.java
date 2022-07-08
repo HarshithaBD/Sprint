@@ -3,6 +3,7 @@ package com.mts.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="university_staff_member")
@@ -10,11 +11,8 @@ public class UniversityStaffMember {
 	
 	@Id
 	private int staffId;
-	
-	@Pattern(regexp="[6-9]{1}[0-9]{9}",messaage="password must have 10 characters")
 	private String password;
-	
-	@NotBlank(message="role should not be blank")
+	@NotBlank(message ="role is mandatory")
 	private String role;
 	
 	public UniversityStaffMember() {
@@ -49,6 +47,4 @@ public class UniversityStaffMember {
 	public String toString() {
 		return "UniversityStaffMember [staffId=" + staffId + ", password=" + password + ", role=" + role + "]";
 	}
-	
-	
 }
