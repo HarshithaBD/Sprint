@@ -1,3 +1,4 @@
+
 package com.mts.service;
 
 import java.util.List;
@@ -25,6 +26,9 @@ public interface IUniversityStaffService {
 
 	//updateStaff() call
 	public UniversityStaffMember updateStaff(UniversityStaffMember user) throws UniversityStaffException;
+
+	
+	
 	
 	/*
 	 * public Course addCourse(Course course);

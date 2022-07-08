@@ -1,14 +1,19 @@
+
 package com.mts.repository;
 
 import java.util.List;
 
-import com.mts.entity.Applicant;
-import com.mts.exception.ApplicantNotFoundException;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface IApplicantRepository {
-	public Applicant addApplicant(Applicant applicant);
-	public Applicant updateApplicant(Applicant applicant) throws ApplicantNotFoundException;
-	public Applicant deleteApplicant(Applicant applicant) throws ApplicantNotFoundException;
-	public Applicant viewApplicant(int applicantid) throws ApplicantNotFoundException;
-	public List<Applicant> viewAllApplicantsByCourse(int courseid);
+import org.springframework.stereotype.Repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.mts.entity.AdmissionStatus;
+import com.mts.entity.Applicant;
+@Repository
+public interface IApplicantRepository extends JpaRepository<Applicant,Integer>{
+	 List<Applicant>findByStatus(AdmissionStatus status);
 }
+
