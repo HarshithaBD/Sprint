@@ -9,10 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.mts.entity.Admission;
 import com.mts.entity.AdmissionStatus;
-
-
-
-
+@Component
 public class ApplicantDto {
 	private int applicantId;
 	private String applicantName;

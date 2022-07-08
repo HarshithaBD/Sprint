@@ -39,7 +39,7 @@ public class ApplicantController {
 	}
 	
 	@DeleteMapping("/deleteApplicant")
-	public Applicant deleteApplicant(@RequestBody Applicant applicant) throws ApplicantNotFoundException {
+	public Applicant deleteApplicant(@PathVariable Applicant applicant) throws ApplicantNotFoundException {
 		return service.deleteApplicant(applicant);
 	}
 	

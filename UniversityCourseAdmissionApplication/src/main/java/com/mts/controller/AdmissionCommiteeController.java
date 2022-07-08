@@ -26,7 +26,7 @@ import com.mts.service.IAdmissionCommiteeMemberService;
 		@Autowired
 		IAdmissionCommiteeMemberService service;
 		
-		@PostMapping("/addCommiteeMember")
+		@PostMapping
 		public AdmissionCommiteeMember addCommiteeMember(@RequestBody AdmissionCommiteeMember member) {
 			return service.addCommiteeMember(member);
 		}

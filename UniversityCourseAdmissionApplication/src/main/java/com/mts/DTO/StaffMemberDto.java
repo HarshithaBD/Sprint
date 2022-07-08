@@ -1,5 +1,8 @@
 package com.mts.DTO;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class StaffMemberDto {
 	private int staffId;
 	private String role;

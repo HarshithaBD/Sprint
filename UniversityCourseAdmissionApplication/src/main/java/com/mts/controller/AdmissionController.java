@@ -25,12 +25,12 @@ public class AdmissionController {
 	@Autowired
 	IAdmissionService service;
 	
-	@PostMapping("/addAdmission")
+	@PostMapping
 	public Admission addAdmission(@RequestBody Admission admission) {
 		return service.addAdmission(admission);
 	}
 	
-	@PutMapping("/updateAdmission")
+	@PutMapping
 	public Admission updateAdmission(@RequestBody Admission admission) throws AdmissionNotGrantedException {
 		return service.updateAdmission(admission);
 	}
