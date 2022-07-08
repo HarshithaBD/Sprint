@@ -51,7 +51,7 @@ public class AdmissionCommiteeMemberServiceImpl implements IAdmissionCommiteeMem
 		List<AdmissionCommiteeMemberDto> toDTO= Arrays.asList(mapper.map(lst, AdmissionCommiteeMemberDto[].class));
 		return toDTO;
 	}
-
+	//to provideAdmissionresult
 	@Override
 	public AdmissionStatus provideAdmissionResult(Applicant applicant) {
 		return applicant.getStatus();	
